@@ -1,0 +1,46 @@
+
+sudo apt update
+sudo apt install nginx
+sudo ufw app list
+#You should get a listing of the application profiles:
+#Output Available applications:
+  Nginx Full
+  Nginx HTTP
+  Nginx HTTPS
+  OpenSSH
+sudo ufw allow 'Nginx HTTP'
+sudo ufw status
+systemctl status nginx
+sudo systemctl stop nginx
+sudo systemctl start nginx
+sudo systemctl restart nginx
+sudo systemctl reload nginx
+sudo systemctl disable nginx
+sudo systemctl enable nginx
+sudo mkdir -p /var/www/example.com/html
+sudo chown -R $USER:$USER /var/www/example.com/html
+sudo chmod -R 755 /var/www/example.com
+vim /var/www/example.com/html/index.html
+/etc/nginx/sites-available/example.com
+sudo nano /etc/nginx/sites-available/example.com
+
+sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/
+
+sudo nano /etc/nginx/nginx.conf
+sudo nginx -t
+sudo systemctl restart nginx
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+Server Configuration
+
+    /etc/nginx: The Nginx configuration directory. All of the Nginx configuration files reside here.
+    /etc/nginx/nginx.conf: The main Nginx configuration file. This can be modified to make changes to the Nginx global configuration.
+    /etc/nginx/sites-available/: The directory where per-site server blocks can be stored. Nginx will not use the configuration files found in this directory unless they are linked to the sites-enabled directory. Typically, all server block configuration is done in this directory, and then enabled by linking to the other directory.
+    /etc/nginx/sites-enabled/: The directory where enabled per-site server blocks are stored. Typically, these are created by linking to configuration files found in the sites-available directory.
+    /etc/nginx/snippets: This directory contains configuration fragments that can be included elsewhere in the Nginx configuration. Potentially repeatable configuration segments are good candidates for refactoring into snippets.
+
+Server Logs
+
+    /var/log/nginx/access.log: Every request to your web server is recorded in this log file unless Nginx is configured to do otherwise.
+    /var/log/nginx/error.log: Any Nginx errors will be recorded in this log.
